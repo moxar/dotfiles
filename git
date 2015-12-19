@@ -7,7 +7,8 @@ function parse_git_branch {
 function parse_git_status {
   noupdated=`git status --porcelain 2> /dev/null | grep -E "^ (M|D)" | wc -l`
   nocommitted=`git status --porcelain 2> /dev/null | grep -E "^(M|A|D|R|C)" | wc -l`
-
+ 
   if [[ $noupdated -gt 0 ]]; then echo -n "*"; fi
   if [[ $nocommitted -gt 0 ]]; then echo -n "+"; fi
+  if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then echo -n " "; fi
 }
