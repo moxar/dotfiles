@@ -1,6 +1,7 @@
 # Import colors
 . ~/.dotfiles/colors
 . ~/.dotfiles/git
+. ~/.dotfiles/git-completion
 
 PS1=${BOLD}${YELLOW}"\t "${BOLD}${GREEN}"\w "${RED}"\$(parse_git_branch)\$(parse_git_status)"${BOLD}${BLUE}"\\$ "${DEFAULT}
 alias ls='ls --color=auto'
