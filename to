@@ -22,6 +22,6 @@ to() {
 		"rdd")	      ncmpc -h elwinar.com;;
 
 		# Error
-		*)            echo "undefined target $1"; ;;
+		*)            printf  "\033[0;31merror: \033[0mundefined target $1\n"; ;;
 	esac
 }
