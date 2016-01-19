@@ -1,0 +1,26 @@
+# shortcut to specific directories
+to() {
+	case $1 in
+
+		# SoCloz go
+		"go")	      cd "$GOPATH/src/github.com/SoCloz/go"; ;;
+		"api")        cd "$GOPATH/src/github.com/SoCloz/go/api"; ;;
+		"v4")         cd "$GOPATH/src/github.com/SoCloz/go/api/v4"; ;;
+		"v5")         cd "$GOPATH/src/github.com/SoCloz/go/api/v5"; ;;
+
+		# SoCloz misc
+		"platform")   cd "/home/socloz/dev/platform"; ;;
+
+		# Perso go
+		"adeptus")    cd "$GOPATH/src/github.com/elwinar/adeptus"; ;;
+		"urlx")       cd "$GOPATH/src/github.com/moxar/urlx"; ;;
+
+		# SSH
+		"prod")       ssh alexandre@admin.socloz2.typhon.net; ;;
+		"docker")     ssh socloz@localhost; ;;
+		"rdd")	      ncmpc -h elwinar.com;;
+
+		# Error
+		*)            echo "undefined target $1"; ;;
+	esac
+}
