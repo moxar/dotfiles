@@ -5,8 +5,6 @@ to() {
 		# SoCloz go
 		"go")	      cd "$GOPATH/src/github.com/SoCloz/go"; ;;
 		"api")        cd "$GOPATH/src/github.com/SoCloz/go/api"; ;;
-		"v4")         cd "$GOPATH/src/github.com/SoCloz/go/api/v4"; ;;
-		"v5")         cd "$GOPATH/src/github.com/SoCloz/go/api/v5"; ;;
 
 		# SoCloz misc
 		"platform")   cd "/home/socloz/dev/platform"; ;;
