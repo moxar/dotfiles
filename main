@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Import colors
 . ~/.dotfiles/colors
 . ~/.dotfiles/git

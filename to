@@ -1,3 +1,5 @@
+#!#/bin/bash
+
 # shortcut to specific directories
 to() {
 	case $1 in
@@ -22,6 +24,6 @@ to() {
 		"rdd")	      ncmpc -h elwinar.com;;
 
 		# Error
-		*)            printf  "\033[0;31merror: \033[0mundefined target $1\n"; ;;
+		*)            echo  "${RED}error: ${DEFAULT}undefined target \"$1\""; ;;
 	esac
 }
