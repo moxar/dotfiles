@@ -1,0 +1,22 @@
+[alias]
+	lo = log --graph --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%an) %C(blue)<%cr>%C(reset)'
+	st = status
+	co = checkout
+	up = pull
+	ci = commit
+	br = branch
+	hunt = log --diff-filter=A --
+[color]
+	ui = true
+[core]
+	editor = vim
+	pager = less
+[pull]
+	rebase = true
+[merge]
+	ff = false
+[user]
+	email = alexandre.thomas@closetome.fr
+	name = Alexandre Thomas
+[push]
+	default = upstream

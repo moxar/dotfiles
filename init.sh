@@ -21,3 +21,6 @@ else
 	fi
 	echo "export GOPATH=$GOPATH" >> ~/.bashrc;
 fi
+
+cp $(pwd)/vimrc ~/.vimrc
+cp $(pwd)/gitconfig ~/.gitconfig
