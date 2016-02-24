@@ -5,17 +5,18 @@ to() {
 	case $1 in
 
 		# SoCloz go
-		"go")	      cd "$GOPATH/src/github.com/SoCloz/go"; ;;
+		"github")     cd "$GOPATH/src/github.com"; ;;
+		"pocs")       cd "$GOPATH/src/github.com/SoCloz/pocs"; ;;
 		"api")        cd "$GOPATH/src/github.com/SoCloz/go/api"; ;;
 		"feeder")     cd "$GOPATH/src/github.com/SoCloz/go/feeder"; ;;
-		"pocs")       cd "$GOPATH/src/pocs"; ;;
+		"tools")      cd "$GOPATH/src/github.com/SoCloz/go/tools"; ;;
 
 		# SoCloz misc
 		"platform")   cd "/home/socloz/dev/platform"; ;;
 
 		# Perso
 		"adeptus")    cd "$GOPATH/src/github.com/elwinar/adeptus"; ;;
-		"urlx")       cd "$GOPATH/src/github.com/moxar/urlx"; ;;
+		"pool")       cd "$GOPATH/src/github.com/moxar/pool"; ;;	
 		"dotfiles")   cd && cd ".dotfiles"; ;;
 
 		# SSH
