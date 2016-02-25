@@ -22,7 +22,10 @@ to() {
 		# SSH
 		"prod")       ssh alexandre@admin.socloz2.typhon.net; ;;
 		"docker")     ssh socloz@localhost; ;;
-		"rdd")	      ncmpc -h elwinar.com;;
+		"rdd")	      ncmpc -h elwinar.com; ;;
+
+		# help
+		"help")       cat ~/.dotfiles/to; ;;
 
 		# Error
 		*)            echo  "${RED}error: ${DEFAULT}undefined target \"$1\""; ;;
