@@ -3,3 +3,4 @@ vim
 tmux
 httpie
 silversearcher-ag
+htop
