@@ -18,6 +18,3 @@ alias ll="ls -h"
 
 # alias bashrc
 alias bashrc="vim ~/.bashrc && source ~/.bashrc"
-
-# PATH
-export PATH=$PATH:.
