@@ -13,6 +13,8 @@
 	pager = less
 [pull]
 	rebase = true
+[fetch]
+	all = true
 [merge]
 	ff = false
 [user]
