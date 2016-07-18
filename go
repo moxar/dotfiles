@@ -2,6 +2,7 @@
 
 # Go vars
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin
 alias godocx="godoc -http :6060"
 alias check="gometalinter -D gotype -D dupl -D aligncheck -D structcheck -D unconvert"
 
