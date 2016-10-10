@@ -5,6 +5,7 @@
 	up = pull
 	ci = commit
 	br = branch
+	puf = push -f
 	hunt = log --diff-filter=A --
 [color]
 	ui = true
