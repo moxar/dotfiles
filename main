@@ -4,8 +4,6 @@
 . ~/.dotfiles/colors
 . ~/.dotfiles/git
 . ~/.dotfiles/git-completion
-. ~/.dotfiles/go
-. ~/.dotfiles/to
 
 # PS
 if [ $USER = "root" ]; then

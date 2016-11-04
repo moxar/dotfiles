@@ -1,6 +1,0 @@
-git
-vim
-tmux
-httpie
-silversearcher-ag
-htop
