@@ -5,7 +5,10 @@
 	up = pull
 	ci = commit
 	br = branch
+	cp = cherry-pick
 	puf = push -f
+	prev = checkout HEAD~1
+	fu = rebase -i HEAD~2
 	hunt = log --diff-filter=A --
 [color]
 	ui = true
