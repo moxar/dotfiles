@@ -21,8 +21,5 @@
 	all = true
 [merge]
 	ff = false
-[user]
-	email = alexandre@luckeyhomes.com
-	name = Alexandre Thomas
 [push]
 	default = upstream
