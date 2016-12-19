@@ -16,3 +16,13 @@ alias ll="ls -h"
 
 # alias bashrc
 alias bashrc="vim ~/.bashrc && source ~/.bashrc"
+
+# docker
+alias fig="docker-compose"
+
+# gopath setter
+gopath() {
+	export GOPATH=$(pwd):$(pwd)/vendor
+	echo "export GOPATH=$(pwd)/$(pwd)/vendor"
+}
+      
