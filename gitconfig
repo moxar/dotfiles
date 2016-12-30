@@ -10,6 +10,7 @@
 	prev = checkout HEAD~1
 	fu = rebase -i HEAD~2
 	hunt = log --diff-filter=A --
+	amend = commit --amend
 [color]
 	ui = true
 [core]
