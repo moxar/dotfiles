@@ -20,9 +20,7 @@ alias bashrc="vim ~/.bashrc && source ~/.bashrc"
 # docker
 alias fig="docker-compose"
 
-# gopath setter
-gopath() {
-	export GOPATH=$(pwd)/../../..
-	echo "export GOPATH=$(pwd)/../../.."
-}
-      
+# sed replace alias
+replace() {
+	find $1 -name "*.go" -exec sed -i 's/'$2'/'$3'/g' {} \;
+}      
