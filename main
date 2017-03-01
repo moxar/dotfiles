@@ -23,4 +23,10 @@ alias fig="docker-compose"
 # sed replace alias
 replace() {
 	find $1 -name "*.go" -exec sed -i 's/'$2'/'$3'/g' {} \;
+}
+
+# git config alias
+gitconfig() {
+	git config user.name "$GIT_NAME"
+	git config user.email "$GIT_EMAIL"
 }      
