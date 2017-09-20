@@ -35,4 +35,8 @@ replace() {
 gitconfig() {
 	git config user.name "$GIT_NAME"
 	git config user.email "$GIT_EMAIL"
+}
+
+utc() {
+	date -d @$1
 }      
