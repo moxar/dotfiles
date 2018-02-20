@@ -26,8 +26,8 @@ alias fig="docker-compose"
 # sed replace alias
 replace() {
 	target=$4
-	if [ -z $target ]; then target="go"; fi
-	find $1 -name "*.$target" -exec sed -i 's/'$2'/'$3'/g' {} \;
+	if [ -z $target ]; then target=".go"; fi
+	find $1 -name "*$target" -exec sed -i 's/'$2'/'$3'/g' {} \;
 		
 }
 
