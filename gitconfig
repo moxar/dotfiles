@@ -21,6 +21,8 @@
 	rebase = true
 [fetch]
 	all = true
+ 	prune = true
+	tags = true
 [merge]
 	ff = false
 [push]
