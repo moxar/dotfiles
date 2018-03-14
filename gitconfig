@@ -11,6 +11,7 @@
 	fu = rebase -i HEAD~2
 	hunt = log --diff-filter=A --
 	amend = commit --amend
+        count = rev-list @ --count
 [color]
 	ui = true
 [core]
