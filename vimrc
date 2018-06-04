@@ -5,9 +5,9 @@ syntax on
 colorscheme ron
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 0
-let g:go_highlight_functions = 1
+let g:go_highlight_functions = 0
 let g:go_highlight_function_calls = 0
-let g:go_highlight_operators = 1
+let g:go_highlight_operators = 0
 
 " tab spaces"
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
@@ -28,10 +28,7 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 15
-augroup ProjectDrawer
-  autocmd!
-  autocmd VimEnter * :Vexplore
-augroup END
+nmap <f12> :Vexplore<CR>
 
 " gitgutter
 set updatetime=100
