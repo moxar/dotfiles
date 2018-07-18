@@ -40,3 +40,15 @@ gitconfig() {
 utc() {
 	date -d @$1
 }      
+
+pullmaster() {
+	cur=$(pwd)
+	for project in $(ls $GOPATH/src/mailjet.com); do
+		echo ${BOLD}${GREEN}$project${DEFAULT}
+		cd $GOPATH/src/mailjet.com/$project
+		git stash
+		git co master
+		git up
+	done
+	cd $cur
+}
