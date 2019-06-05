@@ -15,7 +15,8 @@ alias ls='ls --color=auto'
 alias ll="ls -h"
 
 # export go
-PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
+export GO111MODULE=on
 
 # alias bashrc
 alias bashrc="vim ~/.bashrc && source ~/.bashrc"
