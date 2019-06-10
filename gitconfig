@@ -12,6 +12,7 @@
 	hunt = log --diff-filter=A --
 	amend = commit --amend
         count = rev-list @ --count
+	ca = commit --amend -a --no-edit
 [color]
 	ui = true
 [core]
