@@ -18,6 +18,7 @@
 [core]
 	editor = vim
 	pager = less
+	excludesfile = ~/.gitignore
 [pull]
 	rebase = true
 [fetch]

@@ -33,3 +33,11 @@ gitconfig() {
 utc() {
 	date -d @$1
 }      
+
+repackage() {
+	for file in $(find $1 -type f -name "*.go"); do
+		package=${file%/*}
+		package="${package##*/}"
+		sed -i "s/^package .*$/package $package/g" $file
+	done;	
+}
