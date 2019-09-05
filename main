@@ -24,6 +24,20 @@ alias bashrc="vim ~/.bashrc && source ~/.bashrc"
 # docker
 alias fig="docker-compose"
 
+# env loading
+dotenv() {
+	dir=$1
+	if [ $dir = "." ]; then dir=`pwd`; fi
+	while true; do
+		if [ $dir = "/" ]; then break
+		else
+			export $(cat $dir/.env 2> /dev/null | xargs ) > /dev/null
+			dir=$(dirname $dir)
+		fi
+	done
+}
+
+
 # git config alias
 gitconfig() {
 	git config user.name "$GIT_NAME"
@@ -33,6 +47,14 @@ gitconfig() {
 utc() {
 	date -d @$1
 }      
+
+doc() {
+	a=`mktemp -d`
+	echo $a
+	mkdir -p "$a/pkg" "$a/src"
+	cp -r . $a/src/.
+	GOPATH=$a godoc -http $1
+}
 
 alias lint="golangci-lint run"
 
