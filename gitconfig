@@ -13,6 +13,7 @@
 	amend = commit --amend
         count = rev-list @ --count
 	ca = commit --amend -a --no-edit
+	rbc = rebase --continue
 [color]
 	ui = true
 [core]
