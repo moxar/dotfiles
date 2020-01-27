@@ -46,24 +46,10 @@ gitconfig() {
 
 utc() {
 	date -d @$1
-}      
-
-doc() {
-	a=`mktemp -d`
-	echo $a
-	mkdir -p "$a/pkg" "$a/src"
-	cp -r . $a/src/.
-	GOPATH=$a godoc -http $1
 }
 
-alias lint="golangci-lint run"
-
-repackage() {
-	for file in $(find $1 -type f -name "*.go"); do
-		package=${file%/*}
-		package="${package##*/}"
-		sed -i "s/^package .*$/package $package/g" $file
-	done;	
+run() {
+	make build-$1 && fig up --build $1
 }
 
 # batch rename helper
