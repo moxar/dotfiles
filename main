@@ -15,7 +15,7 @@ alias ls='ls --color=auto'
 alias ll="ls -h"
 
 # export go
-export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
+export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.bin
 export GO111MODULE=on
 
 # alias bashrc
@@ -52,5 +52,13 @@ run() {
 	make build-$1 && fig up --build $1
 }
 
-# batch rename helper
-# for file in $(find -name "*account_user*"); do echo $file; echo "$file" | sed -e 's/account_user/membership/g'; done;
+move() {
+	for from in $(find -type f -name "*$1*"); do
+		to=$(echo "$from" | sed -e 's/'$1'/'$2'/g');
+		mv $from $to;
+		echo "move $from to $to"
+	done;
+}
+
+# docker-compose exec -T api_mysql mysql -u root --password=rootpass database < ~/Work/dumps/2019-10-15_preprod.sql
+# select EVENT_OBJECT_TABLE, TRIGGER_NAME, action_timing, EVENT_MANIPULATION from information_schema.triggers;
