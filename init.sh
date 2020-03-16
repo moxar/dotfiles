@@ -6,11 +6,9 @@ chmod +x ~/.bin/*
 
 git clone https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go
 git clone https://github.com/jparise/vim-graphql.git ~/.vim/pack/plugins/start/vim-graphql
-ln -s $HOME/.dotfiles/vimrc $HOME/.vimrc
 
-line=". $(pwd)/main"
-echo $line >> ~/.bashrc;
-
-cp $(pwd)/vimrc ~/.vimrc
-cp $(pwd)/gitconfig ~/.gitconfig
-cp $(pwd)/gitignore ~/.gitignore
+mkdir -p $HOME/.config
+ln -s $(pwd)/vimrc $HOME/.vimrc
+ln -s $(pwd)/fish $HOME/.config/fish
+ln -s $(pwd)/gitconfig $HOME/.gitconfig
+ln -s $(pwd)/gitignore $HOME/.gitignore
