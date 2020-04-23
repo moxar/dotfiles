@@ -45,3 +45,7 @@ nmap <f12> :Vexplore<CR>
 " gitgutter
 set updatetime=100
 let g:gitgutter_highlight_lines = 0
+
+" fish
+" Set up :make to use fish for syntax checking.
+autocmd FileType fish compiler fish
