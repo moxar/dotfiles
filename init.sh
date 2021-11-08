@@ -12,3 +12,4 @@ ln -s $(pwd)/vimrc $HOME/.vimrc
 ln -s $(pwd)/fish $HOME/.config/fish
 ln -s $(pwd)/gitconfig $HOME/.gitconfig
 ln -s $(pwd)/gitignore $HOME/.gitignore
+ln -s $(pwd)/run $HOME/.bin/run

@@ -1,5 +1,5 @@
 [alias]
-	lo = log --graph --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%an) %C(blue)<%cr>%C(reset)'
+	lo = log --graph --pretty=format:'%C(red)%h%C(reset) %C(yellow)%d%C(reset) %s %C(green)%an %C(blue)%cd%C(reset) %C(yellow)%cr%C(reset)' --date=iso
 	st = status
 	co = checkout
 	up = pull
@@ -7,13 +7,10 @@
 	br = branch
 	cp = cherry-pick
 	puf = push -f
-	prev = checkout HEAD~1
 	fu = rebase -i HEAD~2
-	hunt = log --diff-filter=A --
-	amend = commit --amend
-        count = rev-list @ --count
 	ca = commit --amend -a --no-edit
 	rbc = rebase --continue
+	sync = pull --rebase origin master
 [color]
 	ui = true
 [core]
@@ -32,6 +29,10 @@
 	default = upstream
 [user]
 	name = Alexandre Thomas
+	email = alexandre@aive.com
+	signingkey = D
+[url "ssh://git@github.com"]
+	insteadOf = https://github.com
 [diff "nodiff"]
 	command = /bin/true
 [color "diff-highlight"]
@@ -46,3 +47,9 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[merge "git-crypt"]
+    name = git-crypt merge driver
+    driver = /usr/bin/git-crypt-merge-tool %O %A %B
+    recursive = binary
+[commit]
+	gpgsign = true

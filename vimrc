@@ -1,4 +1,5 @@
 filetype plugin on
+filetype plugin indent on
 
 " color
 syntax on
@@ -8,9 +9,11 @@ let g:go_highlight_fields = 0
 let g:go_highlight_functions = 0
 let g:go_highlight_function_calls = 0
 let g:go_highlight_operators = 0
+let g:go_doc_popup_window = 1
 
 " tab spaces"
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+" autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd BufNewFile,BufRead * setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd BufWritePre * %s/\s\+$//e
 
 " Build/Test on save.
@@ -32,7 +35,9 @@ set number
 nmap <f2> :set nonumber!<CR>
 nmap <f1> :set relativenumber!<CR>
 nmap F :GoFmt<CR>
+nmap B :GoBuild<CR>
 nmap T :GoAddTags db<CR>
+nmap E :GoIfErr<CR>
 
 " tree
 let g:netrw_banner = 0

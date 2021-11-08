@@ -1,6 +1,6 @@
 #!/usr/bin/fish
 
-function kubelogs -d "display the logs of the pod in the namespace"
+function kubedel -d "delete pods in the namespace"
     argparse --name=kubedel 'h/help' 'n/namespace=' 'p/pod=' -- $argv
     or return
 
@@ -20,5 +20,5 @@ function kubelogs -d "display the logs of the pod in the namespace"
         return
     end
 
-    kubectl get pods -n $namespace | ag $pod | cut -d " " -f 1 | xargs kubectl logs -f -n $namespace
+    kubectl get pods -n $namespace | ag $pod | cut -d " " -f 1 | xargs kubectl delete pods -n $namespace
 end
