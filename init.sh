@@ -1,15 +1,12 @@
 #!/bin/bash
 
 mkdir ~/.bin
+mkdir -p $HOME/.config
+
 curl -o ~/.bin/diff-so-fancy https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
 chmod +x ~/.bin/*
 
-git clone https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go
-git clone https://github.com/jparise/vim-graphql.git ~/.vim/pack/plugins/start/vim-graphql
-
-mkdir -p $HOME/.config
-ln -s $(pwd)/vimrc $HOME/.vimrc
-ln -s $(pwd)/fish $HOME/.config/fish
+ln -s $(pwd)/config/nvim $HOME/.config/nvim
+ln -s $(pwd)/zshrc $HOME/.zshrc
 ln -s $(pwd)/gitconfig $HOME/.gitconfig
 ln -s $(pwd)/gitignore $HOME/.gitignore
-ln -s $(pwd)/run $HOME/.bin/run

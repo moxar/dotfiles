@@ -14,9 +14,9 @@
 [color]
 	ui = true
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.gitignore
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = $HOME/.bin/diff-so-fancy | less --tabs=4 -RFX
 [pull]
 	rebase = true
 [fetch]
@@ -51,5 +51,3 @@
     name = git-crypt merge driver
     driver = /usr/bin/git-crypt-merge-tool %O %A %B
     recursive = binary
-[commit]
-	gpgsign = true

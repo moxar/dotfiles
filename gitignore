@@ -1,3 +1,4 @@
 *.swp
 .env
-db.yaml
+@*
+config/nvim/plugin
