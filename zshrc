@@ -35,11 +35,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # export paths
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:/usr/local/bin
-export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:$HOME/.bin
-export PATH=$PATH:$HOME/.local/bin
+source $HOME/.config/plasma-workspace/env/path.sh
 
 # custom aliases
 export AWS_PROFILE=staging

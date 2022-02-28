@@ -26,18 +26,6 @@ require('packer').startup(function()
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
 end)
 
--- Telescope
--- require('telescope').setup {
---   defaults = {
---     mappings = {
---       i = {
---     ['<C-u>'] = false,
---     ['<C-d>'] = false,
---       },
---     },
---   },
--- }
-
 require('telescope')
 -- Telescope shortcuts
 vim.api.nvim_set_keymap('n', '<leader>sf', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
@@ -65,7 +53,7 @@ local on_attach = function(client, bufnr)
       {"▏", "FloatBorder"},
   }
   vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border})
-  vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border}) 
+  vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border})
 
   -- Mappings.
   local opts = { noremap=true, silent=true }
@@ -78,11 +66,10 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 
-  -- TODO: missing goimports
   if client.resolved_capabilities.document_formatting then
     vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
   end
- 
+
 end
 
 -- nvim-cmp supports additional completion capabilities
@@ -102,7 +89,7 @@ for _, lsp in ipairs(servers) do
 end
 
 
--- Numbers 
+-- Numbers
 vim.wo.number=true
 vim.api.nvim_set_keymap('n', '<f1>', ':set relativenumber!<CR>', {})
 vim.api.nvim_set_keymap('n', '<f2>', ':set nonumber!<CR>', {})
@@ -114,13 +101,11 @@ vim.cmd [[
 	autocmd BufWritePre * %s/\s\+$//e
 ]]
 
-
--- Plugins
+-- vim Plugins
 vim.cmd [[
 call plug#begin()
 
 Plug 'jparise/vim-graphql'
 
 call plug#end()
-
 ]]
