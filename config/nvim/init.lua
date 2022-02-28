@@ -72,11 +72,13 @@ local on_attach = function(client, bufnr)
 
 end
 
+use "neovim/nvim-lspconfig"
+
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- Enable the following language servers
-local servers = { 'gopls', 'tsserver' }
+local servers = { 'gopls', 'tsserver', 'graphql' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
