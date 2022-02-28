@@ -113,3 +113,14 @@ vim.cmd [[
 	autocmd BufNewFile,BufRead * setlocal noexpandtab tabstop=4 shiftwidth=4
 	autocmd BufWritePre * %s/\s\+$//e
 ]]
+
+
+-- Plugins
+vim.cmd [[
+call plug#begin()
+
+Plug 'jparise/vim-graphql'
+
+call plug#end()
+
+]]
