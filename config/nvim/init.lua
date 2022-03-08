@@ -31,6 +31,7 @@ require('telescope')
 vim.api.nvim_set_keymap('n', '<leader>sf', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>sp', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gr', [[<cmd>lua require('telescope.builtin').lsp_references()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>s', [[<cmd>nohlsearch<cr>]], { noremap = true, silent = true })
 
 local nvim_lsp = require 'lspconfig'
 
