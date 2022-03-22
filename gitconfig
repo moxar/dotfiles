@@ -10,7 +10,7 @@
 	fu = rebase -i HEAD~2
 	ca = commit --amend -a --no-edit
 	rbc = rebase --continue
-	sync = pull --rebase origin master
+	sync = pull --rebase origin main
 [color]
 	ui = true
 [core]

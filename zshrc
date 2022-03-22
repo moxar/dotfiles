@@ -44,6 +44,7 @@ alias d="diff-so-fancy"
 alias n="nvim"
 alias ls='ls --color'
 alias ll="ls -l"
+alias bastion="k exec -it deployment/bastion -- /bin/bash"
 
 # key bind control + arrow left, right
 bindkey "^[[1;5C" forward-word
