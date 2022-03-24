@@ -11,6 +11,7 @@
 	ca = commit --amend -a --no-edit
 	rbc = rebase --continue
 	sync = pull --rebase origin main
+	next = ! git show --name-only | rg src | rg -v '/(go|ts)' | cut -d '/' -f1,2 | sort | uniq
 [color]
 	ui = true
 [core]

@@ -53,7 +53,7 @@ bindkey "^[[1;5D" backward-word
 # Load context informations
 function prompt_me()
 {
-  branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+	branch=$(git symbolic-ref --short HEAD)
   kctx=$(kubectl config current-context)
   ts=$(date +%H:%M:%S)
   if [[ $(git status --porcelain 2> /dev/null | grep -E "^ (M|D)" | wc -l) -ge 1 ]]; then
