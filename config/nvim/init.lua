@@ -73,8 +73,6 @@ local on_attach = function(client, bufnr)
 
 end
 
-use "neovim/nvim-lspconfig"
-
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -101,6 +99,7 @@ vim.cmd [[colorscheme ron]]
 -- Trim spaces on save
 vim.cmd [[
 	autocmd BufNewFile,BufRead * setlocal noexpandtab tabstop=4 shiftwidth=4
+	autocmd BufNewFile,BufRead *.ts setlocal noexpandtab tabstop=2 shiftwidth=2
 	autocmd BufWritePre * %s/\s\+$//e
 ]]
 
@@ -109,6 +108,7 @@ vim.cmd [[
 call plug#begin()
 
 Plug 'jparise/vim-graphql'
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 ]]
