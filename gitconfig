@@ -12,6 +12,7 @@
 	rbc = rebase --continue
 	sync = pull --rebase origin main
 	next = ! git show --name-only | rg src | rg -v '/(go|ts)' | cut -d '/' -f1,2 | sort | uniq
+	dead = ! git log --graph --pretty=format:'%d' | rg -o 'origin/.*\\)' | rg -v HEAD | sed 's|origin/\\(.*\\))|:\\1|g' | sed 's|,.*||g'
 [color]
 	ui = true
 [core]
