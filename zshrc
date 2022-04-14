@@ -53,15 +53,15 @@ bindkey "^[[1;5D" backward-word
 # Load context informations
 function prompt_me()
 {
-	branch=$(git symbolic-ref --short HEAD)
-  kctx=$(kubectl config current-context)
-  ts=$(date +%H:%M:%S)
-  if [[ $(git status --porcelain 2> /dev/null | grep -E "^ (M|D)" | wc -l) -ge 1 ]]; then
-      symbol="*";
-  elif [[ $(git status --porcelain 2> /dev/null | grep -E "^(M|A|D|R|C)" | wc -l) -ge 1 ]]; then
-      symbol="+";
-  fi
-  echo "%F{yellow}$ts%f %F{green}%10~%f %F{red}$branch$symbol%f %F{cyan}$kctx%f > "
+	branch=$(git symbolic-ref --short HEAD 2> /dev/null)
+ 	kctx=$(kubectl config current-context)
+ 	ts=$(date +%H:%M:%S)
+ 	if [[ $(git status --porcelain 2> /dev/null | grep -E "^ (M|D)" | wc -l) -ge 1 ]]; then
+ 	    symbol="*";
+ 	elif [[ $(git status --porcelain 2> /dev/null | grep -E "^(M|A|D|R|C)" | wc -l) -ge 1 ]]; then
+ 	    symbol="+";
+ 	fi
+ 	echo "%F{yellow}$ts%f %F{green}%10~%f %F{red}$branch$symbol%f %F{cyan}$kctx%f > "
 }
 
 # Enable substitution in the prompt.
