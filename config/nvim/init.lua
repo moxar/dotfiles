@@ -24,6 +24,8 @@ require('packer').startup(function()
 
   -- Telescope rocks hard |..|.
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+
+  use 'editorconfig/editorconfig-vim' -- editorconfig for indentation uniformization
 end)
 
 require('telescope')
@@ -77,7 +79,7 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- Enable the following language servers
-local servers = { 'gopls', 'tsserver', 'graphql' }
+local servers = { 'gopls', 'tsserver', 'graphql', 'eslint' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -98,8 +100,6 @@ vim.cmd [[colorscheme ron]]
 
 -- Trim spaces on save
 vim.cmd [[
-	autocmd BufNewFile,BufRead * setlocal noexpandtab tabstop=4 shiftwidth=4
-	autocmd BufNewFile,BufRead *.ts setlocal noexpandtab tabstop=2 shiftwidth=2
 	autocmd BufWritePre * %s/\s\+$//e
 ]]
 
@@ -112,3 +112,4 @@ Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 ]]
+

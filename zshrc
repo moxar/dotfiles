@@ -37,6 +37,9 @@ export NVM_DIR="$HOME/.nvm"
 # export paths
 source $HOME/.config/plasma-workspace/env/path.sh
 
+# go private import
+export GOPRIVATE=github.com/aivetech
+
 # custom aliases
 export AWS_PROFILE=staging
 alias k="kubectl"
@@ -45,6 +48,9 @@ alias n="nvim"
 alias ls='ls --color'
 alias ll="ls -l"
 alias bastion="k exec -it deployment/bastion -- /bin/bash"
+alias kibana="k port-forward services/kibana 5601"
+alias kdiff='kustomize build k8s/$(kubectl config current-context)/services | k diff -f - | d'
+alias kapply='kustomize build k8s/$(kubectl config current-context)/services | k apply -f - | rg -v unchanged'
 
 # key bind control + arrow left, right
 bindkey "^[[1;5C" forward-word
