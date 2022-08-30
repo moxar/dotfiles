@@ -1,4 +1,5 @@
 *.swp
-.env
-@*
+.parcel-cache
+*.env
 config/nvim/plugin
+pf-*

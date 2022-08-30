@@ -70,6 +70,8 @@ function prompt_me()
  	echo "%F{yellow}$ts%f %F{green}%10~%f %F{red}$branch$symbol%f %F{cyan}$kctx%f > "
 }
 
+source $HOME/.config/$USER
+
 # Enable substitution in the prompt.
 setopt prompt_subst
 
