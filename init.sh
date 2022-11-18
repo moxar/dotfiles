@@ -1,6 +1,5 @@
 #!/bin/bash
 
-mkdir ~/.bin
 mkdir -p $HOME/.config
 
 touch $HOME/.config/$USER

@@ -6,6 +6,7 @@ sudo add-apt-repository ppa:neovim-ppa/stable
 sudo add-apt-repository ppa:git-core/ppa
 sudo apt-get update
 apt-get install curl git zsh
+```
 
 postman
 ```
