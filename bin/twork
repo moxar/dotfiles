@@ -1,0 +1,38 @@
+#!/bin/sh
+
+session="aive"
+backend="$HOME/Work/backend"
+front="$HOME/Work/platform"
+stack="$HOME/Work/stack"
+
+tmux new-session -d -s $session
+tmux rename-window -t $session:0 'infra'
+tmux split-window -h -t $session:0.0
+tmux send-keys -t $session:0.0 "kubectl port-forward deployment/postgres 5432" C-m
+tmux send-keys -t $session:0.1 "watch -n 0.1 kubectl get pod" C-m
+tmux split-window -v -t $session:0.0
+tmux resize-pane -t $session:0.0 -U 15
+tmux send-keys -t $session:0.1 "cd $stack" C-m
+tmux split-window -v -t $session:0.2
+tmux resize-pane -t $session:0.3 -D 20
+tmux send-keys -t $session:0.3  "watch -n 1 \"kubectl exec -t deployment/bastion -- psql video -c \\\"select count(*) as analyses, date(created_at) as date from analysis_job where status = 'pending' group by date(created_at)\\\"\"" C-m
+tmux split-window -h -t $session:0.3
+tmux send-keys -t $session:0.4 "watch -n 1 \"kubectl exec -t deployment/bastion -- psql video -c \\\"select count(*) as renditions, date(created_at) as date from rendition_job where status = 'pending' group by date(created_at)\\\"\"" C-m
+
+sleep 1
+
+tmux new-window -t $session:1 -n 'front'
+tmux split-window -t $session:1.0
+tmux send-keys -t $session:1.0 "cd $front && nvm use 14 && yarn && yarn build && yarn dev" C-m
+tmux send-keys -t $session:1.1 "cd $backend && nvm use 14 && make build pkg=backoffice-app && make serve env=local pkg=backoffice-app" C-m
+
+tmux new-window -t $session:2 -n 'backend'
+tmux split-window -t $session:2.0
+tmux split-window -t $session:2.1
+tmux split-window -t $session:2.0
+tmux send-keys -t $session:2.0 "cd $backend && make build pkg=workspace-api && source bin/workspace-api.env && bin/workspace-api" C-m
+tmux send-keys -t $session:2.1 "cd $backend && make build pkg=notification-api && source bin/notification-api.env && bin/notification-api" C-m
+tmux send-keys -t $session:2.2 "cd $backend && make build pkg=video-api && source bin/video-api.env && bin/video-api" C-m
+tmux send-keys -t $session:2.3 "cd $backend && nvm use 14 && make build pkg=graphql-api && source bin/graphql-api.env && node bin/graphql-api" C-m
+
+tmux attach-session -t $session
