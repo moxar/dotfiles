@@ -52,6 +52,11 @@ alias kibana="k port-forward services/kibana 5601"
 alias kdiff='kustomize build k8s/$(kubectl config current-context)/services | k diff -f - | d'
 alias kapply='kustomize build k8s/$(kubectl config current-context)/services | k apply -f - | rg -v unchanged'
 
+function kconfig()
+{
+	k get configMap/$1 -o json | jq '.data | to_entries[] | "export "+.key+"=\""+.value+"\""' -r
+}
+
 # key bind control + arrow left, right
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
