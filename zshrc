@@ -51,6 +51,8 @@ alias bastion="k exec -it deployment/bastion -- /bin/bash"
 alias kibana="k port-forward services/kibana 5601"
 alias kdiff='kustomize build k8s/$(kubectl config current-context)/services | k diff -f - | d'
 alias kapply='kustomize build k8s/$(kubectl config current-context)/services | k apply -f - | rg -v unchanged'
+alias ffmpeg='ffmpeg -hide_banner'
+alias ffprobe='ffprobe -hide_banner'
 
 function kconfig()
 {
