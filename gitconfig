@@ -7,6 +7,7 @@
 	br = branch
 	cp = cherry-pick
 	puf = push -f
+	wt = worktree
 	fu = rebase -i HEAD~2
 	ca = commit --amend -a --no-edit
 	rbc = rebase --continue

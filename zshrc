@@ -45,6 +45,7 @@ export AWS_PROFILE=staging
 alias k="kubectl"
 alias d="diff-so-fancy"
 alias n="nvim"
+alias g="git"
 alias ls='ls --color'
 alias ll="ls -l"
 alias bastion="k exec -it deployment/bastion -- /bin/bash"
