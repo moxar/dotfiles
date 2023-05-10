@@ -3,6 +3,7 @@
 session="aive"
 front="$HOME/Work/platform"
 stack="$HOME/Work/stack"
+backend="$HOME/Work/backend"
 
 tmux new-session -d -s $session
 tmux rename-window -t $session:0 'infra'
@@ -14,7 +15,7 @@ tmux resize-pane -t $session:0.0 -R 20
 tmux resize-pane -t $session:0.1 -R 40
 
 tmux send-keys -t $session:0.0 "cd $stack" C-m
-tmux send-keys -t $session:0.1 "watch -n 0.1 'kubectl get pod | rg -v kibana'" C-m
+tmux send-keys -t $session:0.1 "watch -n 0.1 'kubectl get pod | rg -v kibana | rg -v node-exporter | rg -v nvidia'" C-m
 tmux send-keys -t $session:0.2 "kubectl port-forward deployment/postgres 5432" C-m
 tmux send-keys -t $session:0.3 "kubectl port-forward deployment/redis 6379" C-m
 tmux send-keys -t $session:0.4 "kubectl port-forward deployment/hydra 4445" C-m
@@ -30,9 +31,9 @@ tmux new-window -t $session:2 -n 'backend'
 tmux split-window -t $session:2.0
 tmux split-window -t $session:2.1
 tmux split-window -t $session:2.0
-tmux send-keys -t $session:2.0 "make build pkg=workspace-api && source bin/workspace-api.env && bin/workspace-api" C-m
-tmux send-keys -t $session:2.1 "make build pkg=notification-api && source bin/notification-api.env && bin/notification-api" C-m
-tmux send-keys -t $session:2.2 "make build pkg=video-api && source bin/video-api.env && bin/video-api" C-m
-tmux send-keys -t $session:2.3 "nvm use 18 && make build pkg=graphql-api && source bin/graphql-api.env && node bin/graphql-api" C-m
+tmux send-keys -t $session:2.0 "make build pkg=workspace-api && source $backend/bin/workspace-api.env && bin/workspace-api" C-m
+tmux send-keys -t $session:2.1 "make build pkg=notification-api && source $backend/bin/notification-api.env && bin/notification-api" C-m
+tmux send-keys -t $session:2.2 "make build pkg=video-api && source $backend/bin/video-api.env && bin/video-api" C-m
+tmux send-keys -t $session:2.3 "nvm use 18 && make build pkg=graphql-api && source $backend/bin/graphql-api.env && node bin/graphql-api" C-m
 
 tmux attach-session -t $session
