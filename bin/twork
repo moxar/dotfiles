@@ -1,39 +1,47 @@
 #!/bin/sh
-
-session="aive"
-front="$HOME/Work/platform"
-stack="$HOME/Work/stack"
+. $HOME/.nvm/nvm.sh
 backend="$HOME/Work/backend"
+front="$HOME/Work/platform"
 
-tmux new-session -d -s $session
-tmux rename-window -t $session:0 'infra'
-tmux split-window -h -t $session:0.0
-tmux split-window -h -t $session:0.0
-tmux split-window -v -t $session:0.2
-tmux split-window -v -t $session:0.2
-tmux resize-pane -t $session:0.0 -R 20
-tmux resize-pane -t $session:0.1 -R 40
+case $1 in
+infra)
+	tmux new-session -d -s infra
+	tmux split-window -h -t infra:0.0
+	tmux send-keys -t infra:0.0 "sudo -E kubefwd svc -d `kubectl config current-context`" C-m
+	tmux send-keys -t infra:0.1 "watch -n 0.1 'kubectl get pod | rg -v kibana | rg -v node-exporter | rg -v nvidia'" C-m
+	tmux attach-session -t infra:0.0
+	;;
 
-tmux send-keys -t $session:0.0 "cd $stack" C-m
-tmux send-keys -t $session:0.1 "watch -n 0.1 'kubectl get pod | rg -v kibana | rg -v node-exporter | rg -v nvidia'" C-m
-tmux send-keys -t $session:0.2 "kubectl port-forward deployment/postgres 5432" C-m
-tmux send-keys -t $session:0.3 "kubectl port-forward deployment/redis 6379" C-m
-tmux send-keys -t $session:0.4 "kubectl port-forward deployment/hydra 4445" C-m
+front)
+	tmux new-session -d -s front
+	nvm use 18
+	tmux split-window -t front:0.0 # 0 1
+	tmux send-keys -t front:0.0 "cd $backend && make build pkg=backoffice-app && make serve env=local pkg=backoffice-app" C-m
+	tmux send-keys -t front:0.1 "cd $front && yarn && yarn build && yarn dev" C-m
+	tmux attach-session -t front:0.0
+	;;
 
-sleep 1
+back)
+	tmux new-session -d -s back
+	tmux split-window -t back:0.0 # 0 1
 
-tmux new-window -t $session:1 -n 'front'
-tmux split-window -t $session:1.0
-tmux send-keys -t $session:1.0 "cd $front && nvm use 18 && yarn && yarn build && yarn dev" C-m
-tmux send-keys -t $session:1.1 "cd $backend && nvm use 18 && make build pkg=backoffice-app && make serve env=local pkg=backoffice-app" C-m
+	tmux split-window -t back:0.0 # 0 1 - 2
+	tmux split-window -t back:0.2 # 0 1 2 3
 
-tmux new-window -t $session:2 -n 'backend'
-tmux split-window -t $session:2.0
-tmux split-window -t $session:2.1
-tmux split-window -t $session:2.0
-tmux send-keys -t $session:2.0 "make build pkg=workspace-api && source $backend/bin/workspace-api.env && bin/workspace-api" C-m
-tmux send-keys -t $session:2.1 "make build pkg=notification-api && source $backend/bin/notification-api.env && bin/notification-api" C-m
-tmux send-keys -t $session:2.2 "make build pkg=video-api && source $backend/bin/video-api.env && bin/video-api" C-m
-tmux send-keys -t $session:2.3 "nvm use 18 && make build pkg=graphql-api && source $backend/bin/graphql-api.env && node bin/graphql-api" C-m
+	tmux split-window -t back:0.0 # 0 1 - 2 3 4
+	tmux split-window -t back:0.2 # 0 1 2 3 - 4 5
+	tmux split-window -t back:0.4 # 0 1 2 3 4 5 - 6
+	# tmux split-window -t back:0.6 # 0 1 2 3 4 5 6 7
 
-tmux attach-session -t $session
+	tmux send-keys -t back:0.0 "make build pkg=font-api && source $backend/bin/font-api.env && bin/font-api" C-m
+	tmux send-keys -t back:0.1 "make build pkg=notification-api && source $backend/bin/notification-api.env && bin/notification-api" C-m
+	tmux send-keys -t back:0.2 "make build pkg=payment-api && source $backend/bin/payment-api.env && bin/payment-api" C-m
+	tmux send-keys -t back:0.3 "make build pkg=suggestion-api && source $backend/bin/suggestion-api.env && bin/suggestion-api" C-m
+	tmux send-keys -t back:0.4 "make build pkg=video-api && source $backend/bin/video-api.env && bin/video-api" C-m
+	tmux send-keys -t back:0.5 "make build pkg=workspace-api && source $backend/bin/workspace-api.env && bin/workspace-api" C-m
+
+	nvm use 18
+	tmux send-keys -t back:0.6 "make buildx pkg=graphql-api && source $backend/bin/graphql-api.env && node bin/graphql-api" C-m
+	tmux attach-session -t back:0.0
+	;;
+esac

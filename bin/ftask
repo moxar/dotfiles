@@ -1,3 +1,4 @@
-query="select raw from analysis_task where task = '$1' and video_id = '$2'"
+db=`echo ${db:=video}`
+query="select raw from analysis_task where video_id = '$2' and task = '$1'"
 echo $query >&2
-kubectl exec -t deployment/bastion -- psql video -t -c "$query"
+kubectl exec -t deployment/bastion -- psql $db -t -c "$query"
