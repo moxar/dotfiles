@@ -1,4 +1,7 @@
-db=`echo ${db:=video}`
-query="select raw from analysis_task where video_id = '$2' and task = '$1'"
-echo $query >&2
-kubectl exec -t deployment/bastion -- psql $db -t -c "$query"
+#! /bin/bash
+
+kctx=`kubectl config current-context`
+bucket=aive-$kctx
+id=`echo $1 | tr -d '-'`
+task=`aws --profile $kctx s3 ls s3://$bucket/videos/$id/analysis/tasks/$2 | tr '.json' ".json\n" | tail -1 | cut -c 32-`
+aws --profile $kctx s3 cp s3://$bucket/videos/$id/analysis/tasks/$task -

@@ -29,10 +29,7 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-# Export nvm after installation
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export KUBE_EDITOR=hx
 
 # export paths
 source $HOME/.config/plasma-workspace/env/path.sh
@@ -44,15 +41,18 @@ export GOPRIVATE=github.com/aivetech
 export AWS_PROFILE=staging
 alias k="kubectl"
 alias d="diff-so-fancy"
-alias n="nvim"
+alias n="hx"
 alias g="git"
 alias ls='ls --color'
 alias ll="ls -l"
-alias kibana="k port-forward services/kibana 5601"
-alias kdiff='kustomize build k8s/$(kubectl config current-context)/services | k diff -f - | d'
-alias kapply='kustomize build k8s/$(kubectl config current-context)/services | k apply -f - | rg -v unchanged'
+
 alias ffmpeg='ffmpeg -hide_banner'
 alias ffprobe='ffprobe -hide_banner'
+
+alias kdiff='kustomize build k8s/`kubectl config current-context`/services | k diff -f - | d'
+alias kapply='kustomize build k8s/`kubectl config current-context`/services | k apply -f - | rg -v unchanged'
+alias kfwd='sudo -E kubefwd svc -d `kubectl config current-context`'
+alias kwatch="watch -n 0.1 'kubectl get pod | rg -v kibana | rg -v node-exporter | rg -v nvidia'"
 
 # key bind control + arrow left, right
 bindkey "^[[1;5C" forward-word
@@ -61,15 +61,15 @@ bindkey "^[[1;5D" backward-word
 # Load context informations
 function prompt_me()
 {
-	branch=$(git symbolic-ref --short HEAD 2> /dev/null)
- 	kctx=$(kubectl config current-context)
+	branch=`git symbolic-ref --short HEAD 2> /dev/null`
+ 	kctx=`kubectl config current-context`
  	ts=$(date +%H:%M:%S)
- 	if [[ $(git status --porcelain 2> /dev/null | grep -E "^ (M|D)" | wc -l) -ge 1 ]]; then
+ 	if [[ `git status --porcelain 2> /dev/null | grep -E "^ (M|D)" | wc -l` -ge 1 ]]; then
  	    symbol="*";
- 	elif [[ $(git status --porcelain 2> /dev/null | grep -E "^(M|A|D|R|C)" | wc -l) -ge 1 ]]; then
+ 	elif [[ `git status --porcelain 2> /dev/null | grep -E "^(M|A|D|R|C)" | wc -l` -ge 1 ]]; then
  	    symbol="+";
  	fi
- 	echo "%F{yellow}$ts%f %F{green}%10~%f %F{red}$branch$symbol%f %F{cyan}$kctx%f > "
+ 	echo "%F{yellow}$ts%f %F{green}%~%f %F{red}$branch$symbol%f %F{cyan}$kctx%f > "
 }
 
 source $HOME/.config/$USER
@@ -79,3 +79,5 @@ setopt prompt_subst
 
 # Format prompt
 prompt='$(prompt_me)'
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

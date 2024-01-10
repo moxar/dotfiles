@@ -17,7 +17,7 @@
 [color]
 	ui = true
 [core]
-	editor = nvim
+	editor = hx
 	excludesfile = ~/.gitignore
 	pager = $HOME/.bin/diff-so-fancy | less --tabs=4 -RFX
 [pull]
