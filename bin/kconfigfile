@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+
+if [[ $# != 2 ]]
+then
+  echo "Usage: $(basename $0) <configmap> <key>"
+  echo ""
+  echo "Fetch a configmap key from current kubernetes context."
+  exit 1
+fi
+
+configmap=$1
+key=$2
+
+kubectl get -o json configmap/$configmap | jq ".data[\"$key\"]" -r
