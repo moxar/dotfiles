@@ -49,10 +49,7 @@ alias ll="ls -l"
 alias ffmpeg='ffmpeg -hide_banner'
 alias ffprobe='ffprobe -hide_banner'
 
-alias kdiff='kustomize build k8s/`kubectl config current-context`/services | k diff -f - | d'
-alias kapply='kustomize build k8s/`kubectl config current-context`/services | k apply -f - | rg -v unchanged'
 alias kfwd='sudo -E kubefwd svc -d `kubectl config current-context`'
-alias kwatch="watch -n 0.1 'kubectl get pod | rg -v kibana | rg -v node-exporter | rg -v nvidia'"
 
 # key bind control + arrow left, right
 bindkey "^[[1;5C" forward-word
@@ -79,5 +76,3 @@ setopt prompt_subst
 
 # Format prompt
 prompt='$(prompt_me)'
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
