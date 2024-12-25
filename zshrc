@@ -34,6 +34,8 @@ export KUBE_EDITOR=hx
 # export paths
 source $HOME/.config/plasma-workspace/env/path.sh
 
+source $HOME/.config/$USER
+
 # go private import
 export GOPRIVATE=github.com/aivetech
 
@@ -49,7 +51,8 @@ alias ll="ls -l"
 alias ffmpeg='ffmpeg -hide_banner'
 alias ffprobe='ffprobe -hide_banner'
 
-alias kfwd='sudo -E kubefwd svc -d `kubectl config current-context`'
+alias kfwd='sudo -E kubefwd svc -d `kubectx`'
+alias tf="terraform -chdir=tf/`kubectx`"
 
 # key bind control + arrow left, right
 bindkey "^[[1;5C" forward-word
@@ -68,8 +71,6 @@ function prompt_me()
  	fi
  	echo "%F{yellow}$ts%f %F{green}%~%f %F{red}$branch$symbol%f %F{cyan}$kctx%f > "
 }
-
-source $HOME/.config/$USER
 
 # Enable substitution in the prompt.
 setopt prompt_subst
