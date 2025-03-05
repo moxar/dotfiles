@@ -3,52 +3,44 @@ name = "html"
 formatter = { command = 'prettier' }
 
 [[language]]
-name = "json"
-formatter = { command = 'prettier' }
-
-[[language]]
 name = "css"
 formatter = { command = 'prettier' }
 
+[language-server]
+biome = { command = "biome", args = ["lsp-proxy"] }
+
+[language-server.vtsls]
+command = "vtsls"
+args = ["--stdio"]
+
+[language-server.vtsls.config.typescript.preferences]
+importModuleSpecifier = "non-relative"
+
 [[language]]
 name = "javascript"
-formatter = { command = 'prettier' }
-language-servers = [ 'eslint-language-server' ]
+language-servers = [ { name = "vtsls", except-features = [ "format" ] }, "biome" ]
+formatter = { command = "biome", args = ["check", "--apply", "--stdin-file-path", "a.js"] }
 auto-format = true
 
 [[language]]
 name = "typescript"
-formatter = { command = 'prettier' , args = ["--parser", "typescript"] }
-language-servers = [ 'typescript-language-server', 'eslint-language-server' ]
+language-servers = [ { name = "vtsls", except-features = [ "format" ] }, "biome" ]
+formatter = { command = "biome", args = ["check", "--apply", "--stdin-file-path", "a.ts"] }
 auto-format = true
 
 [[language]]
 name = "tsx"
-formatter = { command = 'prettier' , args = ["--parser", "typescript"] }
-language-servers = [ 'typescript-language-server', 'eslint-language-server' ]
 auto-format = true
+language-servers = [ { name = "vtsls", except-features = [ "format" ] }, "biome" ]
+formatter = { command = "biome", args = ["check", "--apply", "--stdin-file-path", "a.tsx"] }
 
-[language-server.gopls]
-config = { "formatting.gofumpt" = true }
+[[language]]
+name = "jsx"
+auto-format = true
+language-servers = [ { name = "vtsls", except-features = [ "format" ] }, "biome" ]
+formatter = { command = "biome", args = ["check", "--apply", "--stdin-file-path", "a.jsx"] }
 
-[language-server.eslint-language-server]
-args = ["--stdio"]
-command = "vscode-eslint-language-server"
-
-[language-server.eslint-language-server.config]
-experimental = { useFlagConfig = false }
-nodePath = ""
-problems = { shortenToSingleLine = false }
-rulesCustomizations = []
-run = "onType"
-validate = "on"
-workingDirectory = { mode = "auto" }
-
-[language-server.eslint-language-server.config.codeAction]
-
-[language-server.eslint-language-server.config.codeAction.disableRuleComment]
-enable = true
-location = "separateLine"
-
-[language-server.eslint-language-server.config.codeAction.showDocumentation]
-enable = true
+[[language]]
+name = "json"
+language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome" ]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "a.json"] }
