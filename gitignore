@@ -3,3 +3,4 @@
 *.env
 config/nvim/plugin
 pf-*
+copilot-instructions.md

@@ -1,46 +1,34 @@
-[[language]]
-name = "html"
-formatter = { command = 'prettier' }
-
-[[language]]
-name = "css"
-formatter = { command = 'prettier' }
-
 [language-server]
 biome = { command = "biome", args = ["lsp-proxy"] }
 
-[language-server.vtsls]
-command = "vtsls"
-args = ["--stdio"]
-
-[language-server.vtsls.config.typescript.preferences]
-importModuleSpecifier = "non-relative"
-
 [[language]]
 name = "javascript"
-language-servers = [ { name = "vtsls", except-features = [ "format" ] }, "biome" ]
-formatter = { command = "biome", args = ["check", "--apply", "--stdin-file-path", "a.js"] }
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
 auto-format = true
 
 [[language]]
 name = "typescript"
-language-servers = [ { name = "vtsls", except-features = [ "format" ] }, "biome" ]
-formatter = { command = "biome", args = ["check", "--apply", "--stdin-file-path", "a.ts"] }
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
 auto-format = true
+
+[language-server.typescript-language-server.config.preferences]
+importModuleSpecifierPreference = "non-relative"
 
 [[language]]
 name = "tsx"
 auto-format = true
-language-servers = [ { name = "vtsls", except-features = [ "format" ] }, "biome" ]
-formatter = { command = "biome", args = ["check", "--apply", "--stdin-file-path", "a.tsx"] }
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
 
 [[language]]
 name = "jsx"
 auto-format = true
-language-servers = [ { name = "vtsls", except-features = [ "format" ] }, "biome" ]
-formatter = { command = "biome", args = ["check", "--apply", "--stdin-file-path", "a.jsx"] }
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+
+[[language]]
+name = "graphql"
+auto-format = true
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "a.graphql"]}
 
 [[language]]
 name = "json"
 language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome" ]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "a.json"] }
