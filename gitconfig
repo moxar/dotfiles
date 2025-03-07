@@ -19,7 +19,7 @@
 [core]
 	editor = hx
 	excludesfile = ~/.gitignore
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
 [pull]
 	rebase = true
 [fetch]
@@ -36,8 +36,6 @@
 	signingkey = D
 [url "ssh://git@github.com"]
 	insteadOf = https://github.com
-[diff "nodiff"]
-	command = /bin/true
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52
@@ -54,3 +52,10 @@
     name = git-crypt merge driver
     driver = /usr/bin/git-crypt-merge-tool %O %A %B
     recursive = binary
+
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+	side-by-side = true
+[merge]
+    conflictstyle = zdiff3
