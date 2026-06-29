@@ -1,6 +1,9 @@
 [language-server]
 biome = { command = "biome", args = ["lsp-proxy"] }
 
+[language-server.gopls.config]
+"formatting.gofumpt" = true
+
 [[language]]
 name = "javascript"
 language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]

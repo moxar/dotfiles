@@ -39,9 +39,6 @@ source $HOME/.config/$USER
 # go private import
 export GOPRIVATE=github.com/aivetech
 
-# cleaner diff for kubectl, see https://github.com/sh0rez/kubectl-neat-diff
-export KUBECTL_EXTERNAL_DIFF=kubectl-neat-diff
-
 # change configuration dir for softwares like helix, tmate, tmux...
 export XDG_CONFIG_HOME=$HOME/.config
 
@@ -82,3 +79,6 @@ setopt prompt_subst
 
 # Format prompt
 prompt='$(prompt_me)'
+
+export VOLTA_HOME=$HOME/.volta
+export PATH=$PATH:$VOLTA_HOME/bin
